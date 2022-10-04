@@ -8,18 +8,18 @@ import ProductDetails from './components/ProductDetails';
 
 //Context
 import ProductContextProvider from './context/ProductContextProvider';
-import CardContextProvider from './context/CardContextProvider';
+import CartContextProvider from './context/CartContextProvider';
 
 const App = () => {
   return (
     <ProductContextProvider>
-      <CardContextProvider>
+      <CartContextProvider>
         <Switch>
           <Route path="/products/:id" component={ProductDetails} />
           <Route path="/products" component={Store} />
           <Redirect to="/products" />
         </Switch>
-      </CardContextProvider>
+      </CartContextProvider>
     </ProductContextProvider>
   );
 };
