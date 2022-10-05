@@ -8,20 +8,22 @@ import { shorten, isInCart, quantityCount } from '../../helper/functions';
 import { CartContext } from '../../context/CartContextProvider';
 
 //Icon
-
 import trashIcon from '../../assets/icons/trash.svg';
+
+//Styles
+import styles from './Product.module.css';
 
 const Product = ({ productData }) => {
   const { state, dispatch } = useContext(CartContext);
 
   return (
-    <div>
-      <img src={productData.image} alt="product" style={{ width: '200px' }} />
+    <div className={styles.container}>
+      <img className={styles.cardImage} src={productData.image} alt="product" />
       <h3>{shorten(productData.title)}</h3>
       <p>{productData.price}</p>
-      <div>
+      <div className={styles.linkContainer}>
         <Link to={`/products/${productData.id}`}>Details</Link>
-        <div>
+        <div className={styles.buttonContainer}>
           {quantityCount(state, productData.id) > 1 && (
             <button
               onClick={() =>
@@ -42,6 +44,7 @@ const Product = ({ productData }) => {
           )}
           {isInCart(state, productData.id) ? (
             <button
+              className={styles.smallButton}
               onClick={() =>
                 dispatch({ type: 'INCREASE', payload: productData })
               }
