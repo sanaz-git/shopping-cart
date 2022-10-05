@@ -2,7 +2,7 @@ import React, { useReducer, createContext } from 'react';
 
 const initialState = {
   selectedItems: [],
-  itemCounter: 0,
+  itemsCounter: 0,
   total: 0,
   checkout: false,
 };
@@ -33,6 +33,7 @@ const cartReducer = (state, action) => {
         ...state,
         selectedItems: [...state.selectedItems],
         ...sumItems(state.selectedItems),
+        checkout: false,
       };
 
     case 'REMOVE_ITEM':
@@ -68,14 +69,14 @@ const cartReducer = (state, action) => {
     case 'CHECKOUT':
       return {
         selectedItems: [],
-        itemCounter: 0,
+        itemsCounter: 0,
         total: 0,
         checkout: true,
       };
     case 'CLEAR':
       return {
         selectedItems: [],
-        itemCounter: 0,
+        itemsCounter: 0,
         total: 0,
         checkout: false,
       };
